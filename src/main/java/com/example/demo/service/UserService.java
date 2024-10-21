@@ -30,4 +30,10 @@ public class UserService {
         userRepo.save(user);
         return userDto;
     }
+
+    public UserDto updateUser(UserDto userDto) {
+        User user = userRepo.findById(userDto.getId()).get();
+        userRepo.save(user);
+        return userDto;
+    }
 }
