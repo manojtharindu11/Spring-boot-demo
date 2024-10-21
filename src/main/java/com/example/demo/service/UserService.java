@@ -36,4 +36,10 @@ public class UserService {
         user.setName(userDto.getName());
         return userDto;
     }
+
+    public String deleteUser(int id) {
+        User user = userRepo.findById(id).get();
+        userRepo.delete(user);
+        return "User deleted";
+    }
 }
