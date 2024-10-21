@@ -3,13 +3,14 @@ package com.example.demo.service;
 import com.example.demo.dto.UserDto;
 import com.example.demo.model.User;
 import com.example.demo.repo.UserRepo;
-import jakarta.transaction.Transactional;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -28,7 +29,7 @@ public class UserService {
     public UserDto addUser(UserDto userDto) {
         User user = modelMapper.map(userDto, User.class);
         userRepo.save(user);
-        return userDto;
+        return modelMapper.map(user, UserDto.class);
     }
 
     public UserDto updateUser(UserDto userDto) {
@@ -42,4 +43,10 @@ public class UserService {
         userRepo.delete(user);
         return "User deleted";
     }
+
+    public UserDto getUser(int id) {
+        User user = userRepo.findById(id).get();
+        return modelMapper.map(user, UserDto.class);
+    }
+
 }
