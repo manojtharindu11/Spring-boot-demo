@@ -45,7 +45,7 @@ public class UserService {
     }
 
     public UserDto getUser(int id) {
-        User user = userRepo.findById(id).get();
+        User user = userRepo.
         return modelMapper.map(user, UserDto.class);
     }
 
