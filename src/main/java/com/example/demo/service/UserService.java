@@ -33,7 +33,7 @@ public class UserService {
 
     public UserDto updateUser(UserDto userDto) {
         User user = userRepo.findById(userDto.getId()).get();
-        userRepo.save(user);
+        user.setName(userDto.getName());
         return userDto;
     }
 }
